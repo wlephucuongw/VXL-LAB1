@@ -61,20 +61,6 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-void clearAllClock(){
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, RESET);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, RESET);
-}
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -107,7 +93,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  clearAllClock();
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
