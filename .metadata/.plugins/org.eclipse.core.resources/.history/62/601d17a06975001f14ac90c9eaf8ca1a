@@ -91,21 +91,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint16_t pin = GPIO_PIN_4;
-  int counter = 0;
-while (1){
-	    if(counter >= 12) {
-	    	counter = 0;
-	    	pin = GPIO_PIN_4;
-	    }
-	    HAL_GPIO_WritePin(GPIOA, pin, SET);
-	    HAL_Delay(1000);
-	    HAL_GPIO_WritePin(GPIOA, pin, RESET);
-	    pin = pin << 1;
-	    counter++;
-	    HAL_GPIO_WritePin(GPIOA, pin, SET);
+  while (1)
+  {
+    /* USER CODE END WHILE */
 
-}
+    /* USER CODE BEGIN 3 */
+  }
   /* USER CODE END 3 */
 }
 
