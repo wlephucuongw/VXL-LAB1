@@ -61,34 +61,6 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-void display7SEG(int num){
-
-
-	    uint8_t segments[10] = {
-	        0b00111111, // 0
-	        0b00000110, // 1
-	        0b01011011, // 2
-	        0b01001111, // 3
-	        0b01100110, // 4
-	        0b01101101, // 5
-	        0b01111101, // 6
-	        0b00000111, // 7
-	        0b01111111, // 8
-	        0b01101111  // 9
-	    };
-
-
-	    uint8_t segment_value = segments[num];
-
-
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, (segment_value & 0x01) ? RESET : SET);  // Segment A
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, (segment_value & 0x02) ? RESET : SET);  // Segment B
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, (segment_value & 0x04) ? RESET : SET);  // Segment C
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, (segment_value & 0x08) ? RESET : SET);  // Segment D
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, (segment_value & 0x10) ? RESET : SET);  // Segment E
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, (segment_value & 0x20) ? RESET : SET);  // Segment F
-	    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_14, (segment_value & 0x40) ? RESET : SET);  // Segment G
-	}
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -119,92 +91,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int red = 1;
-  int green = 0;
-  int yellow = 2;
-  int led_color_1 = 0;
-  int led_color_2 = 1;
-  int counter_1 = 0;
-  int counter_2 = 0;
   while (1)
   {
+    /* USER CODE END WHILE */
 
-
-	  	  	  if(led_color_1 == green && counter_1 == 3){
-	  	  		  led_color_1 = 2;
-	  	  		  counter_1 = 0;
-	  	  	  }
-	  	  	  if(led_color_1 == red && counter_1 == 5){
-	  	  		  led_color_1 = 0;
-	  	  		  counter_1 = 0;
-	  	  	  }
-	  	  	  if(led_color_1 == yellow && counter_1 == 2){
-	  	  		  led_color_1 = 1;
-	  	  		  counter_1 = 0;
-	  	  	  }
-	  	  	  if(led_color_2 == green && counter_2 == 3){
-	  	  		  led_color_2 = 2;
-	  	  		  counter_2 = 0;
-	  	  	  }
-	  	  	  if(led_color_2 == red && counter_2 == 5){
-	  	  		  led_color_2 = 0;
-	  	  		  counter_2 = 0;
-	  	  	  }
-	  	  	  if(led_color_2 == yellow && counter_2 == 2){
-	  	  		  led_color_2 = 1;
-	  	  		  counter_2 = 0;
-	  	  	  }
-	  	  	  if(led_color_1 == green){
-	  	  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, SET);	//  led green on
-	  	  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, SET);   //  led green on
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, RESET);
-	  	  	  }
-		  	  else if(led_color_1 == yellow){
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, SET); 	// led yellow on
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, SET);	// led yellow on
-		  	  }
-		  	  else if(led_color_1 == red){
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, RESET);
-			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, SET); //led red on
-			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, RESET);
-			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, SET); // led red on
-			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, RESET);
-		  	  }
-
-			  if(led_color_2 == red){
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, SET);   // led red on
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, SET);  //led red on
-		  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, RESET);
-			  }
-		  	  else if(led_color_2 == yellow){
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, SET);	// led yellow on
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, SET); // led yellow on
-		  	  }
-		  	  else if(led_color_2 == green){
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, SET); // led green on
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, SET); // led green on
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, RESET);
-			  	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, RESET);
-		  	  }
-		  	  counter_1++;
-		  	  counter_2++;
-		  	  HAL_Delay(1000);
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
