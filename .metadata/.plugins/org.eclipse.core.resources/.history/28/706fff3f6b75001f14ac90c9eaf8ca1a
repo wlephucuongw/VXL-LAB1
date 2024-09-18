@@ -61,23 +61,6 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-void clearNumberOnClock(int num){
-
-		if (num < 0 || num > 11) {
-	        return;
-	    }
-
-	    uint16_t pin = GPIO_PIN_4 << num;
-
-	    HAL_GPIO_WritePin(GPIOA, pin, RESET);
-}
-void setNumberOnClock(int num){
-	if (num < 0 || num > 11) {
-	        return;
-	    }
-	    uint16_t pin = GPIO_PIN_4 << num;
-	    HAL_GPIO_WritePin(GPIOA, pin, SET);
-}
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -108,39 +91,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int hour = 0;
-  int minute = 0;
-  int second = 0;
-  int counter = 0;
   while (1)
   {
-	  if(second >= 12){
-		  counter++;
-		  second = 0;
-	  }
-	  if(counter >= 5){
-		  if(minute != hour && minute != second) clearNumberOnClock(minute);
-		  minute++;
-		  setNumberOnClock(minute);
-		  counter = 0;
-	  }
-	  if(minute >= 12){
-		  if(hour != minute && hour != second) clearNumberOnClock(hour);
-		  hour++;
-		  setNumberOnClock(hour);
-		  minute = 0;
+    /* USER CODE END WHILE */
 
-	  }
-	  if(hour >= 12){
-		  hour = second = minute = 0;
-	  }
-	  setNumberOnClock(hour);
-	  setNumberOnClock(minute);
-	  setNumberOnClock(second);
-	  HAL_Delay(5000);
-	  if(second != hour && second != minute) clearNumberOnClock(second);
-	  second++;
-	  setNumberOnClock(second);
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
