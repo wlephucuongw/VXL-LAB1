@@ -61,16 +61,6 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-void clearNumberOnClock(int num){
-
-		if (num < 0 || num > 11) {
-	        return;
-	    }
-
-	    uint16_t pin = GPIO_PIN_4 << num;
-
-	    HAL_GPIO_WritePin(GPIOA, pin, RESET);
-}
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -101,11 +91,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int counter = 0;
   while (1)
   {
-	  clearNumberOnClock(counter++);
-	  if(counter > 11) counter = 0;
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
